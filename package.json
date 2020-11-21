@@ -6,13 +6,19 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test --exit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "assert": "^2.0.0",
+    "axios": "^0.21.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.15"
+    "mocha": "^8.2.1",
+    "mongoose": "^5.10.15",
+    "nanoid": "^3.1.18",
+    "supertest": "^6.0.1"
   }
 }
