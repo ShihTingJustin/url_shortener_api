@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha test --exit"
+    "test": "mocha test --exit --recursive --timeout 2000"
   },
   "author": "",
   "license": "ISC",

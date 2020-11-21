@@ -1,13 +1,14 @@
-const Url = require('../models/url')
-const helpers = require('../helpers')
+const helpers = require('../../helpers')
 const assert = require('assert')
-const request = require('supertest')
-const app = require('../app')
+const testData = {
+  originalUrl: 'https://www.apple.com/tw/',
+  shortUrl: 'A6M3G'
+}
 
 describe('helper function test', () => {
   describe('Is original url valid', () => {
     it('should return true when url is valid', async () => {
-      assert.strictEqual(await helpers.isOriginalUrlValid('https://www.apple.com/tw/'), true)
+      assert.strictEqual(await helpers.isOriginalUrlValid(testData.originalUrl), true)
     })
   })
 
@@ -20,10 +21,7 @@ describe('helper function test', () => {
 
   describe('Is short url unique', () => {
     it('should return short url when it is unique', async () => {
-      assert.strictEqual(await helpers.isShortUrlUnique('12345'), '12345')
+      assert.strictEqual(await helpers.isShortUrlUnique(testData.shortUrl), testData.shortUrl)
     })
   })
 })
-
-
-
