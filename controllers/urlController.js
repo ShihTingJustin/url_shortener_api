@@ -14,9 +14,8 @@ const urlController = {
 
       // valid url
       const shortUrlLength = 5
-      const shortUrl = await helpers.createShortUrl(shortUrlLength)
-      const isUnique = await helpers.isShortUrlUnique(shortUrl)
-      if (shortUrl && isUnique) {
+      const shortUrl = await helpers.isShortUrlUnique(await helpers.createShortUrl(shortUrlLength))
+      if (shortUrl) {
         await Url.create({ originalUrl, shortUrl })
         return res.status(200).json({
           status: 'success',

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha test --exit --recursive --timeout 2000"
+    "test": "mocha test --exit --recursive --timeout 2000",
+    "seed": "node models/seeds/urlSeeder.js"
   },
   "author": "",
   "license": "ISC",
