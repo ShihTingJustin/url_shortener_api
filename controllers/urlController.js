@@ -20,16 +20,45 @@ const urlController = {
         await Url.create({ originalUrl, shortUrl })
         return res.status(200).json({
           status: 'success',
+          message: 'create shorten url successfully',
           data: {
             originalUrl,
             shortUrl
-          },
-          message: 'create shorten url successfully'
+          }
         })
       }
     } catch (err) {
       console.log(err)
-      return res.status(400).json({
+      return res.status(500).json({
+        status: 'error',
+        message: 'unknown error'
+      })
+    }
+  },
+
+  getOriginalUrl: async (req, res) => {
+    try {
+      const { urls } = req.params
+      const originalUrl = await Url.findOne({ shortUrl: urls }).exec()
+      if (!originalUrl) return res.status(400).json({
+        status: 'error',
+        message: 'cannot find original url'
+      })
+      // update shortened URL click count
+      const data = await Url.findById(originalUrl._id)
+      data.click += 1
+      await data.save()
+      return res.status(200).json({
+        status: 'success',
+        message: 'get original url successfully',
+        data: {
+          originalUrl: data.originalUrl,
+          shortUrl: data.shortUrl
+        }
+      })
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
         status: 'error',
         message: 'unknown error'
       })

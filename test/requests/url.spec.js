@@ -8,11 +8,7 @@ const testData = {
 }
 
 describe('api test', () => {
-  describe('POST /api/urls', () => {
-    before(done => {
-      Url.deleteOne({}, done)
-    })
-
+  context('POST /api/urls', () => {
     it(' - successfully', async () => {
       const res = await request(app)
         .post('/api/urls')
@@ -22,8 +18,21 @@ describe('api test', () => {
 
       assert.strictEqual(res.body.data.originalUrl, testData.originalUrl)
     })
+  })
 
-    after(done => {
+  context('GET /api/:urls', () => {
+    it(' - successfully', async () => {
+      const data = await Url.findOne({ originalUrl: testData.originalUrl })
+      const { shortUrl } = data
+      const res = await request(app)
+        .get(`/api/${shortUrl}`)
+        .set({ 'Content-Type': 'application/json' })
+        .expect(200)
+
+      assert.strictEqual(res.body.data.shortUrl, shortUrl)
+    })
+
+    after((done) => {
       Url.deleteOne({}, done)
     })
   })
