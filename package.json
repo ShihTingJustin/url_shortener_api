@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha test --exit --recursive --timeout 2000",
+    "test": "NODE_ENV=test mocha test --exit --recursive --timeout 2000",
+    "cover": "NODE_ENV=test nyc npm run test",
     "seed": "node models/seeds/urlSeeder.js"
   },
   "author": "",
@@ -21,6 +22,7 @@
     "mocha": "^8.2.1",
     "mongoose": "^5.10.15",
     "nanoid": "^3.1.18",
+    "nyc": "^15.1.0",
     "redis": "^3.0.2",
     "supertest": "^6.0.1"
   }
