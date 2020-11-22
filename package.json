@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "assert": "^2.0.0",
+    "async-redis": "^1.1.7",
     "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
@@ -20,6 +21,7 @@
     "mocha": "^8.2.1",
     "mongoose": "^5.10.15",
     "nanoid": "^3.1.18",
+    "redis": "^3.0.2",
     "supertest": "^6.0.1"
   }
 }

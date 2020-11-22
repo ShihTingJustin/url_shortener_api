@@ -4,6 +4,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const routes = require('./routes')
 require('./config/mongoose')
+require('./redis/config')
+require('./redis/cacheHelpers').createUrlCache()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())

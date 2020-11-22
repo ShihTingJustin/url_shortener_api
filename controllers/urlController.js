@@ -1,5 +1,6 @@
 const Url = require('../models/url')
 const helpers = require('../helpers')
+const cacheHelpers = require('../redis/cacheHelpers')
 
 const urlController = {
   createShortUrl: async (req, res) => {
@@ -11,7 +12,6 @@ const urlController = {
         status: 'error',
         message: 'invalid url'
       })
-
       // valid url
       const shortUrlLength = 5
       const shortUrl = await helpers.isShortUrlUnique(await helpers.createShortUrl(shortUrlLength))
@@ -38,6 +38,19 @@ const urlController = {
   getOriginalUrl: async (req, res) => {
     try {
       const { urls } = req.params
+      // cache exist
+      const cache = await cacheHelpers.getUrlCache(urls)
+      if (cache) {
+        return res.status(200).json({
+          status: 'success',
+          message: 'get original url successfully',
+          data: {
+            originalUrl: cache.originalUrl,
+            shortUrl: cache.shortUrl
+          }
+        })
+      }
+      // cache not exist
       const originalUrl = await Url.findOne({ shortUrl: urls }).exec()
       if (!originalUrl) return res.status(400).json({
         status: 'error',
