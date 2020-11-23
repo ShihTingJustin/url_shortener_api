@@ -1,6 +1,6 @@
 const Url = require('../models/url')
 const asyncRedis = require("async-redis");
-const client = asyncRedis.createClient([{ url: process.env.REDISCLOUD_URL }]);
+const client = asyncRedis.createClient(process.env.REDISCLOUD_URL);
 const cacheHelpers = {
   createUrlCache: async () => {
     try {
