@@ -1,6 +1,6 @@
 const Url = require('../models/url')
 const asyncRedis = require("async-redis");
-const client = asyncRedis.createClient();
+const client = asyncRedis.createClient([{ url: process.env.REDISCLOUD_URL }]);
 const cacheHelpers = {
   createUrlCache: async () => {
     try {
@@ -14,9 +14,11 @@ const cacheHelpers = {
           sort: { click: -1 } //desc
         }
       )
+
       for (let i = 0; i < urlCacheCount; i++) {
         await client.set(data[i].shortUrl, JSON.stringify(data[i]))
       }
+      
     } catch (err) {
       console.log(err)
       return res.status(500).json({
