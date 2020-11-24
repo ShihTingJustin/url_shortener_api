@@ -32,6 +32,8 @@ router.get('/:urls', urlController.getOriginalUrl)
  *     description: success
  *    "400":
  *     description: bad request
+ *    "500":
+ *     description: unknown error
  *
  * /api/{urls}:
  *  get:
@@ -50,6 +52,8 @@ router.get('/:urls', urlController.getOriginalUrl)
  *     description: success
  *    "400":
  *     description: bad request
+ *    "500":
+ *     description: unknown error
  */
 
 module.exports = router

@@ -1,6 +1,7 @@
 const Url = require('../models/url')
 const helpers = require('../helpers')
 const cacheHelpers = require('../redis/cacheHelpers')
+const domain = 'https://url-shortener-api-server.herokuapp.com/'
 
 const urlController = {
   createShortUrl: async (req, res) => {
@@ -65,7 +66,7 @@ const urlController = {
         message: 'get original url successfully',
         data: {
           originalUrl: data.originalUrl,
-          shortUrl: data.shortUrl
+          shortUrl: domain + data.shortUrl
         }
       })
     } catch (err) {

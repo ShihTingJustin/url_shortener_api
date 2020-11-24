@@ -6,6 +6,7 @@ const testData = {
   originalUrl: 'https://www.apple.com/tw/',
   shortUrl: 'A6M3G'
 }
+const domain = 'https://url-shortener-api-server.herokuapp.com/'
 
 describe('api test', () => {
   context('POST /api/urls', () => {
@@ -29,7 +30,7 @@ describe('api test', () => {
         .set({ 'Content-Type': 'application/json' })
         .expect(200)
 
-      assert.strictEqual(res.body.data.shortUrl, shortUrl)
+      assert.strictEqual(res.body.data.shortUrl, domain + shortUrl)
     })
 
     after((done) => {
