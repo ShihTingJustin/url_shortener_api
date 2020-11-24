@@ -1,5 +1,6 @@
 # URL Shortener API Server
-
+前提條件：
+1. 假設服務是一個用戶登入在使用，因此 1 個原始網址只能產生 1 個短網址
 ## API
 * POST /api/urls - create short url
 * GET /api/:urls - get original url

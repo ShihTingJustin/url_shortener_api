@@ -25,4 +25,14 @@ module.exports = {
       console.log(err)
     }
   },
+
+  isOriginalUrlUnique: async (originalUrl) => {
+    try {
+      const checkOriginalUrl = await Url.findOne({ originalUrl }).exec()
+      if (!checkOriginalUrl) return true
+      else return false
+    } catch (err) {
+      console.log(err)
+    }
+  },
 }
