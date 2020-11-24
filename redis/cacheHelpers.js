@@ -4,8 +4,8 @@ const client = asyncRedis.createClient(process.env.REDISCLOUD_URL);
 const cacheHelpers = {
   createUrlCache: async () => {
     try {
-      const urlCacheCount = 50
-      const clickCount = 50
+      const urlCacheCount = 5
+      const clickCount = 5
       const data = await Url.find(
         { click: { $gte: clickCount } }, // greater than or equivalent 
         ['originalUrl', 'shortUrl', 'click'],
