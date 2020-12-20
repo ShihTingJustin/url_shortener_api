@@ -21,10 +21,6 @@ const cacheHelpers = {
       
     } catch (err) {
       console.log(err)
-      return res.status(500).json({
-        status: 'error',
-        message: 'unknown error when try to create url cache'
-      })
     }
   },
 
@@ -33,10 +29,6 @@ const cacheHelpers = {
       return JSON.parse(await client.get(key))
     } catch (err) {
       console.log(err)
-      return res.status(500).json({
-        status: 'error',
-        message: 'unknown error when try to get url cache'
-      })
     }
   }
 

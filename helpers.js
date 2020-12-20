@@ -20,7 +20,7 @@ module.exports = {
     try {
       const checkShortUrl = await Url.findOne({ shortUrl }).exec()
       if (!checkShortUrl) return shortUrl
-      else isShortUrlUnique(createShortUrl())
+      else return isShortUrlUnique(createShortUrl())
     } catch (err) {
       console.log(err)
     }
