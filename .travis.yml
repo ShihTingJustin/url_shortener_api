@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+    - "14"
+services:
+  - mongodb
+env:
+  - NODE_ENV=test
+before_install:
+  - npm install mongoose -g
+before_script:
+  - sudo redis-server /etc/redis/redis.conf
+  - npm run seed
+deploy:
+  provider: heroku
+  api_key:
+    secure: HEROKU_API_KEY
+  app: url-shortener-api-server
+  on:
+    repo: ShihTingJustin/url_shortener_api
