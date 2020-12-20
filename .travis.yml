@@ -1,19 +1,18 @@
 language: node_js
 node_js:
-    - "14"
+- '14'
 services:
-  - mongodb
-env:
-  - NODE_ENV=test
+- mongodb
 before_install:
-  - npm install mongoose -g
+- npm install mongoose -g
 before_script:
-  - sudo redis-server /etc/redis/redis.conf
-  - npm run seed
+- sudo redis-server /etc/redis/redis.conf
+- npm run seed
 deploy:
   provider: heroku
   api_key:
-    secure: HEROKU_API_KEY
+    secure: m+5RrnpuqndcPqG7Q5OGgjVZa80SJXSQIpWpJEGHUtAj/fxsF1pZ2cKZna6+UYoY9XAbF1oj3Dsw+vZ5OUAjUSfHrx9/QWYhCBSgKQYVz4/lWM3bSA3+lxi3TgQcHeXBOz6MfC86lxOFhQo/V/Vf5WGAFaj5vTdYCXjsdL1Q8s2RMAe7osXx7Myhn0qAwGuK4/dP4w3wlDrskXduaJYRhn1cj81TBzF/17+c4/aQe769Z0Ats+R92GPWGhBDGM8cZbboZdRGq+NA6aaEzIlmdbIFBewcisb6H3vqKNVdqK1XykEruRrGuxaibeOgCRjWrjkOuzOQ5gVibfAgCyNPefdawFRetk++lFfr+elROlpyoQGq6fqx+/+yQgGGLbAWTRYLtWoepkCXuFVT7WRlw6YI4iL2s66Vhiw6R0T8igm9D+AYSRL/2tQTM1hZcpHnOjcWV2Va5QRu1Tnx39Spq3pyMgSThG7/ypBIj1vuymlSmz1vBJa3V+VcmyiRy/nAMvzM6sZE56H6Bzf57vVv+sqxv1qlPaTYQpQylcj6pGE4mkAH222h7y3StD5goyP9o9YLGI1danrPFe0iMcaueUdoCBYbU1n82B7+FlVoG0yKMaVC7+bO5rh1WZ1JG1hzYWXq9ub39NOWCzJ0EgInvPdptwsrSvzlZLrgIA4IPrc=
   app: url-shortener-api-server
   on:
     repo: ShihTingJustin/url_shortener_api
+    branch: main
