@@ -4,10 +4,12 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const routes = require('./routes')
 const swaggerDoc = require('./swagger/swaggerDoc')
+const cors = require('cors')
 require('./config/mongoose')
 require('./redis/config')
 require('./redis/cacheHelpers').createUrlCache()
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(routes)
