@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./tmp/data/db:/data/db
+  cache:
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./tmp/data/cache:/data/cache
+  web:
+    image: mercedes722s/url_shortener_backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    command: >
+      /bin/bash -c "
+      sleep 10;
+      npm run seed;
+      sleep 5;
+      npm run start;"
+    environment:
+      PORT: "3000"
+      NODE_ENV: "development"
+      MONGODB_URI: "mongodb://db:27017"
+      REDISCLOUD_URL: "redis://cache:6379"

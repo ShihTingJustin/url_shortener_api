@@ -1,0 +1,5 @@
+node_modules
+.git
+.vscode
+tmp/
+ec2-key-pair.pem
