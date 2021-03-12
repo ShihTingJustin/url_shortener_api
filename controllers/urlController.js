@@ -19,7 +19,7 @@ const urlController = {
         status: 'error',
         message: 'invalid url'
       })
-      
+
       // valid url
       const shortUrlLength = 5
       const shortUrl = await helpers.isShortUrlUnique(await helpers.createShortUrl(shortUrlLength))
@@ -66,7 +66,7 @@ const urlController = {
         status: 'error',
         message: 'cannot find original url'
       })
-      
+
       // update shortened URL click count
       const data = await Url.findById(originalUrl._id)
       data.click += 1
@@ -80,6 +80,20 @@ const urlController = {
         }
       })
 
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        status: 'error',
+        message: 'unknown error'
+      })
+    }
+  },
+
+  getAllUrls: async (req, res) => {
+    try {
+      return res.status(200).json({
+        data: await Url.find().exec()
+      })
     } catch (err) {
       console.log(err)
       return res.status(500).json({
