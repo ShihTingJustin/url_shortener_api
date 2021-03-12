@@ -7,12 +7,6 @@ const urlController = {
   createShortUrl: async (req, res) => {
     try {
       const { originalUrl } = req.body
-      const isUnique = await helpers.isOriginalUrlUnique(originalUrl)
-      if (!isUnique) return res.status(400).json({
-        status: 'error',
-        message: 'original url is existed'
-      })
-
       const isValid = await helpers.isOriginalUrlValid(originalUrl)
       // invalid url
       if (!isValid) return res.status(400).json({

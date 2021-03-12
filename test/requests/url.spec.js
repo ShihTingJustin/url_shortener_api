@@ -12,15 +12,6 @@ const domain = 'https://url-shortener-api-server.herokuapp.com/'
 
 describe('api test', () => {
   context('POST /api/urls', () => {
-    it(' - error', async () => {
-      const res = await request(app)
-        .post('/api/urls')
-        .set({ 'Content-Type': 'application/json' })
-        .send({ originalUrl: testData.originalUrl })
-        .expect(400)
-
-      assert.strictEqual(res.body.message, 'original url is existed')
-    })
 
     it(' - error', async () => {
       const res = await request(app)
@@ -30,7 +21,7 @@ describe('api test', () => {
         .expect(400)
 
       assert.strictEqual(res.body.message, 'invalid url')
-    })    
+    })
 
     it(' - successfully', async () => {
       const res = await request(app)
@@ -40,7 +31,7 @@ describe('api test', () => {
         .expect(200)
 
       assert.strictEqual(res.body.data.originalUrl, testData.uniqueUrl)
-    })    
+    })
   })
 
   context('GET /api/:urls', () => {
@@ -57,6 +48,6 @@ describe('api test', () => {
   })
 
   after((done) => {
-    Url.deleteOne({ originalUrl: testData.uniqueUrl}, done)
+    Url.deleteOne({ originalUrl: testData.uniqueUrl }, done)
   })
 })
