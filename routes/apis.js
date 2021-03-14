@@ -5,6 +5,7 @@ const urlController = require('../controllers/urlController')
 router.get('/urls/all', urlController.getAllUrls)
 router.post('/urls', urlController.createShortUrl)
 router.get('/:urls', urlController.getOriginalUrl)
+router.delete('/urls/:id', urlController.removeUrl)
 
 
 /**

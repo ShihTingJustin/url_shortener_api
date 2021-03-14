@@ -95,6 +95,26 @@ const urlController = {
         message: 'unknown error'
       })
     }
+  },
+
+  removeUrl: async (req, res) => {
+    try {
+      const response = await Url.deleteOne({ _id: req.params.id });
+      if (response.deletedCount === 1) {
+        return res.status(200).json({
+          status: 'success',
+          message: 'url removed',
+        })
+      } else {
+        throw new Error('url remove fail')
+      }
+    } catch (err) {
+      console.log(err)
+      return res.status(403).json({
+        status: 'error',
+        message: err.message
+      })
+    }
   }
 
 }

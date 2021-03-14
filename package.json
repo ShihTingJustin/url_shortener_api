@@ -20,6 +20,7 @@
     "chai": "^4.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "method-override": "^3.0.0",
     "mocha": "^8.2.1",
     "mongoose": "^5.10.15",
     "nanoid": "^3.1.18",
