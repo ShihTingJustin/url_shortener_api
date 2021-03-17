@@ -12,7 +12,16 @@ const urlSchema = mongoose.Schema({
   click: {
     type: Number,
     default: '0'
-  }
+  },
+  img: {
+    type: String
+  },
+  title: {
+    type: String
+  },
+  description: {
+    type: String
+  },
 })
 
 module.exports = mongoose.model('Url', urlSchema)

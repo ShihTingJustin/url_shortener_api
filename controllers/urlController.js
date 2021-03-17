@@ -19,7 +19,7 @@ const urlController = {
       const shortUrl = await helpers.isShortUrlUnique(await helpers.createShortUrl(shortUrlLength))
       if (shortUrl) {
         await Url.create({ originalUrl, shortUrl })
-        return res.status(200).json({
+        res.status(200).json({
           status: 'success',
           message: 'create shorten url successfully',
           data: {
@@ -28,7 +28,7 @@ const urlController = {
           }
         })
       }
-
+      return await helpers.getMetaData(originalUrl, shortUrl)
     } catch (err) {
       console.log(err)
       return res.status(500).json({
