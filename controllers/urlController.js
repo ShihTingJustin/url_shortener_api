@@ -1,6 +1,7 @@
 const Url = require('../models/url')
 const helpers = require('../helpers')
 const cacheHelpers = require('../redis/cacheHelpers')
+require('dotenv').config()
 const domain = process.env.DOMAIN
 
 const urlController = {
