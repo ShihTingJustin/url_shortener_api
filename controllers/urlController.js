@@ -85,7 +85,7 @@ const urlController = {
   getAllUrls: async (req, res) => {
     try {
       return res.status(200).json({
-        data: await Url.find().exec()
+        data: await (await Url.find().sort({ createdAt: 'desc' }).exec())
       })
     } catch (err) {
       console.log(err)
