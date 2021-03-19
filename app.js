@@ -9,6 +9,7 @@ const methodOverride = require('method-override')
 require('./config/mongoose')
 require('./redis/config')
 require('./redis/cacheHelpers').createUrlCache()
+require('dotenv').config()
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -21,7 +22,7 @@ var server = require("http").createServer(app);
 var socket = require("socket.io")(server, {
   allowEIO3: true,
   cors: {
-    origin: 'http://localhost:8080',
+    origin: process.env.NODE_ENV === 'production' ? process.env.DOMAIN : 'http://localhost:8080',
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -30,7 +31,7 @@ var socket = require("socket.io")(server, {
 socket.on("connection", (socket) => {
   if (socket.connected) {
     console.log("[socket] client is connected");
-    socket.emit("shortUrlClick", { shortUrlClick: 63, id: "6052eb3d13941a4871603fcd"});
+    //socket.emit("shortUrlClick", { shortUrlClick: 63, id: "6052eb3d13941a4871603fcd"});
   }
   socket.on("connect", () => {
     console.log("client is connected");
