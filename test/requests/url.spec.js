@@ -10,7 +10,14 @@ const testData = {
 }
 
 describe('api test', () => {
-  context('POST /api/urls', () => {
+  before(async () => {
+    await Url.create({
+      originalUrl: 'https://www.apple.com/tw/',
+      shortUrl: 'A6M3G',
+    })
+  })
+
+  context('POST /urls', () => {
 
     it(' - error', async () => {
       const res = await request(app)
@@ -32,21 +39,20 @@ describe('api test', () => {
       assert.strictEqual(res.body.data.originalUrl, testData.uniqueUrl)
     })
   })
-  // todo: fix it
-  // context('GET /api/:urls', () => {
-  //   it(' - successfully', async () => {
-  //     const data = await Url.findOne({ originalUrl: testData.originalUrl })
-  //     const { shortUrl } = data
-  //     const res = await request(app)
-  //       .get(`/api/${shortUrl}`)
-  //       .set({ 'Content-Type': 'application/json' })
-  //       .expect(200)
+  
+  context('GET /:urls', () => {
+    it(' - successfully', async () => {
+      const res = await request(app)
+        .get(`/api/A6M3G`)
+        .set({ 'Content-Type': 'application/json' })
+        .expect(200)
 
-  //     assert.strictEqual(res.body.data.shortUrl, shortUrl)
-  //   })
-  // })
+      assert.strictEqual(res.body.data.shortUrl, testData.shortUrl)
+    })
+  })
 
-  after((done) => {
-    Url.deleteOne({ originalUrl: testData.uniqueUrl }, done)
+  after(async () => {
+    await Url.deleteOne({ originalUrl: testData.uniqueUrl })
+    await Url.deleteOne({ shortUrl: testData.shortUrl })
   })
 })

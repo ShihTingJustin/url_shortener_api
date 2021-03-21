@@ -30,9 +30,5 @@ describe('helper function test', () => {
     it('should return true when it is unique', async () => {
       assert.strictEqual(await helpers.isOriginalUrlUnique(testData.uniqueUrl), true)
     })
-
-    it('should return false when it is not unique', async () => {
-      assert.strictEqual(await helpers.isOriginalUrlUnique(testData.originalUrl), false)
-    })
   })
 })
