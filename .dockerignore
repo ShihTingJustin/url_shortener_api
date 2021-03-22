@@ -3,3 +3,5 @@ node_modules
 .vscode
 tmp/
 ec2-key-pair.pem
+.env
+.travis.yml
