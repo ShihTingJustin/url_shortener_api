@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 const urlSchema = mongoose.Schema({
   originalUrl: {
     type: String,
@@ -22,6 +23,10 @@ const urlSchema = mongoose.Schema({
   description: {
     type: String
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }
 },
   { timestamps: true }
 )
