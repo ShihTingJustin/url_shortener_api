@@ -54,5 +54,14 @@ module.exports = {
       await data.save()
     }
     return
-  }
+  },
+
+  isUnique: async (model, key, value) => {
+    try {
+      const check = await model.findOne({ [key]: value }).exec()
+      if (check[key]) return 'duplicated'
+    } catch (err) {
+      return 'unique'
+    }
+  },
 }
