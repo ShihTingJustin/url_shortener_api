@@ -1,13 +1,18 @@
 const express = require('express')
 const router = express.Router()
+const passport = require('../config/passport.js')
 const urlController = require('../controllers/urlController')
 const userController = require('../controllers/userController')
 
+const authenticated = passport.authenticate('jwt', { session: false })
+
 router.post('/users', userController.createUser)
-router.get('/urls/all', urlController.getAllUrls)
-router.post('/urls', urlController.createShortUrl)
+router.post('/signin', userController.signIn)
+router.get('/users/current-user', authenticated, userController.getCurrentUser)
+router.get('/urls/all', authenticated, urlController.getAllUrls)
+router.post('/urls', authenticated, urlController.createShortUrl)
 router.get('/:urls', urlController.getOriginalUrl)
-router.delete('/urls/:id', urlController.removeUrl)
+router.delete('/urls/:id', authenticated, urlController.removeUrl)
 
 
 /**

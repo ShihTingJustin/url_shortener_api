@@ -3,14 +3,19 @@ const User = require('../user.js')
 const db = require('../../config/mongoose')
 const urlSeederData = require('./urlSeed.json')
 const userSeederData = require('./userSeed.json')
+const bcrypt = require('bcryptjs')
 
 const recordData = urlSeederData.map(item => JSON.parse(JSON.stringify(item)))
 const userData = userSeederData.map(item => JSON.parse(JSON.stringify(item)))
+const users = userData.map(item => {
+  item.password = bcrypt.hashSync(item.password, bcrypt.genSaltSync(10), null)
+  return item
+})
 
 db.once('open', async () => {
   try {
-    console.log('run seeder...')
-    await User.create(...userData)
+    console.log('run seeder...')    
+    await User.create(...users)
     const userId0 = (await User.findOne({ name: 'LH44' }).lean())._id
     const userId1 = (await User.findOne({ name: 'NR6' }).lean())._id
     const records = recordData.map((item, idx) => {
