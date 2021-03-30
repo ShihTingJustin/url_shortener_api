@@ -82,11 +82,10 @@ const urlController = {
     }
   },
 
-  getAllUrls: async (req, res) => {
+  getAllUrlsByUser: async (req, res) => {
     try {
-      return res.status(200).json({
-        data: await (await Url.find().sort({ createdAt: 'desc' }).exec())
-      })
+      const data = (await Url.find({ userId: req.params.userId }).sort({ createdAt: 'desc' }).exec())
+      return res.status(200).json({ data })
     } catch (err) {
       console.log(err)
       return res.status(500).json({
