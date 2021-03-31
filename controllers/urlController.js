@@ -17,7 +17,7 @@ const urlController = {
       const shortUrlLength = 5
       const shortUrl = await helpers.isShortUrlUnique(await helpers.createShortUrl(shortUrlLength))
       if (shortUrl) {
-        await Url.create({ originalUrl, shortUrl })
+        await Url.create({ originalUrl, shortUrl, userId: req.user.id })
         res.status(200).json({
           status: 'success',
           message: 'create shorten url successfully',
@@ -97,7 +97,7 @@ const urlController = {
 
   deleteUrl: async (req, res) => {
     try {
-      const response = await Url.deleteOne({ _id: req.params.id });
+      const response = await Url.deleteOne({ _id: req.params.id, userId: req.user.id });
       if (response.deletedCount === 1) {
         return res.status(200).json({
           status: 'success',
