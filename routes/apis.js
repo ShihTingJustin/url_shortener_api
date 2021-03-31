@@ -9,10 +9,10 @@ const authenticated = passport.authenticate('jwt', { session: false })
 router.post('/users', userController.createUser)
 router.post('/signin', userController.signIn)
 router.get('/users/current-user', authenticated, userController.getCurrentUser)
-router.get('/urls/all/:userId', authenticated, urlController.getAllUrlsByUser)
+router.get('/urls/all', authenticated, urlController.getAllUrlsByUser)
 router.post('/urls', authenticated, urlController.createShortUrl)
 router.get('/:urls', urlController.getOriginalUrl)
-router.delete('/urls/:id', authenticated, urlController.removeUrl)
+router.delete('/urls/:id', authenticated, urlController.deleteUrl)
 
 
 /**

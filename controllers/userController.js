@@ -44,7 +44,7 @@ const userController = {
       }
       // token-signing
       const payload = { id: user._id }
-      const token = jwt.sign(payload, process.env.JWT_SECRET)
+      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 10000 })
       return res.status(200).json({
         status: 'success',
         message: 'ok',
@@ -63,11 +63,16 @@ const userController = {
 
   getCurrentUser: async (req, res) => {
     try {
-      return res.json(await User.findById(`${req.user.id}`))
+      return res.json({
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email
+      })
     } catch (err) {
       console.log(err)
     }
-  }
+  },
+
 }
 
 module.exports = userController

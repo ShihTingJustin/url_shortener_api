@@ -84,7 +84,7 @@ const urlController = {
 
   getAllUrlsByUser: async (req, res) => {
     try {
-      const data = (await Url.find({ userId: req.params.userId }).sort({ createdAt: 'desc' }).exec())
+      const data = (await Url.find({ userId: req.user.id }).sort({ createdAt: 'desc' }).exec())
       return res.status(200).json({ data })
     } catch (err) {
       console.log(err)
@@ -95,7 +95,7 @@ const urlController = {
     }
   },
 
-  removeUrl: async (req, res) => {
+  deleteUrl: async (req, res) => {
     try {
       const response = await Url.deleteOne({ _id: req.params.id });
       if (response.deletedCount === 1) {

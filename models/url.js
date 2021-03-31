@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const urlSchema = mongoose.Schema({
+const urlSchema = Schema({
   originalUrl: {
     type: String,
     require: true
