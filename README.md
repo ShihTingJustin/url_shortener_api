@@ -1,47 +1,70 @@
-# URL Shortener API Server
-前提條件：
-1. 假設服務是一個用戶登入在使用，因此 1 個原始網址只能產生 1 個短網址
+# URL Shortener
+You can create short form url for your original url and track click times of it. Try this App [**here**](https://shihtingjustin.github.io/url_shortener_vue/#/).
+
+![](https://i.imgur.com/6DVNr6e.jpg)
+![](https://i.imgur.com/ZRBf9pn.jpg)
+
+#### Test accounts
+| name |     email     | password |
+|:----:|:-------------:|:--------:|
+| LH44 | user1@amg.com |   123    |
+| NR6  | user2@amg.com |   123    |
+
+
+## Features
+* Users can create short url after signed in
+* Users can see their own urls after signed in
+* Users can be redirected to original site via short url
+
 ## API
 * POST /api/urls - create short url
 * GET /api/:urls - get original url
-#### 👉 [API Doc by Swagger](https://url-shortener-api-server.herokuapp.com/api-docs/#/)
+
+You can refer to the API document [**here**](https://url-shortener-api-server.herokuapp.com/api-docs/#/)
+
+## Stack
+* Backend
+    * Node.js
+    * Express.js
+    * MongoDB
+    * Redis (cache)
+    * Mocha.js (testing)
+    * Travis CI (CI/CD)
+    * Heroku (deployment)
+    * Swagger (document)
+    * Docker (environment)
+
+* Frontend [**(Frontend Repository)**](https://github.com/ShihTingJustin/url_shortener_vue)
+    * Vue
+    * Vue Router
+    * Vuex
+    * Bootstrap
+    * github-pages (deployment)
+
+
+## Prerequisite
+Install [docker](https://www.docker.com/) in your computer.
 
 ## Setup
-1. Install Redis and MongoDB in your computer
-2. Clone repository
+1. clone repository
 ```
 git clone https://github.com/ShihTingJustin/url_shortener_api.git
 ```
-2. Install by NPM
+2. go to project directory
 ```
-npm install
+cd url_shortener_api
 ```
-3. Use seed data
+3. start the App
 ```
-npm run seed
+docker-compose up
 ```
-4. Start the server
+4. use the App on
 ```
-npm run start
-```
-5. Terminal show the message
-```
-Express is listening on http://localhost:3000
+http://localhost:8080/
 ```
 
-## Test
-Don't start the server
-```
-npm test
-```
-
-## Stack
-* Node.js
-* Express.js
-* MongoDB
-* Redis (cache)
-* Mocha (testing)
-* Heroku (deployment)
-
-## Authors
-[Justin Huang 黃士庭](https://www.linkedin.com/in/justinhuang777/) 
+## Author
+[ShihTingJustin](https://github.com/ShihTingJustin) (Justin)
+* [LinkedIn](https://www.linkedin.com/in/justinhuang777/) 
+* [Medium](https://medium.com/%E4%BD%A0%E6%98%AF%E8%87%AA%E7%94%B1%E7%9A%84)
+* [Teaching Assistant at ALPHA Camp](https://lighthouse.alphacamp.co/users/2842/ta_profile)
