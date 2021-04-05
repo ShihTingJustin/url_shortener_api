@@ -32,6 +32,7 @@ services:
       NODE_ENV: "development"
       MONGODB_URI: "mongodb://db:27017"
       REDISCLOUD_URL: "redis://cache:6379"
+      JWT_SECRET: "123456"
   web:
     image: mercedes722s/url-shortener-frontend
     container_name: web
@@ -42,3 +43,5 @@ services:
       npm run serve;"
     environment:
       PORT: "8080"
+      VUE_APP_DOMAIN: "http://localhost:8080/#/"
+      VUE_APP_BASEURL: "http://localhost:3000/api"
