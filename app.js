@@ -11,7 +11,10 @@ require('./redis/config')
 require('./redis/cacheHelpers').createUrlCache()
 require('dotenv').config()
 
-app.use(cors())
+app.use(cors({
+  origin: `${process.env.FRONTEND_DOMAIN}`,
+  optionsSuccessStatus: 200
+}))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(methodOverride('_method'))
