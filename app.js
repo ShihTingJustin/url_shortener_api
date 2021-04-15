@@ -19,7 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(methodOverride('_method'))
 app.use(routes)
-swaggerDoc(app)
 
 app.listen(PORT, () => {
   console.log(`Express is listening on localhost:${PORT}`)

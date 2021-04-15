@@ -1,5 +1,3 @@
-const swaggerJsDoc = require('swagger-jsdoc')
-const swaggerUi = require('swagger-ui-express')
 let HOST = process.env.HOST || 'localhost:3000'
 HOST = HOST.replace('http://', '')
 
@@ -16,6 +14,4 @@ const swaggerOptions = {
   apis: ['./routes/apis.js']
 }
 
-module.exports = app => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerOptions)))
-}
+module.exports = swaggerOptions
