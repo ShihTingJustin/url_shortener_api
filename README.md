@@ -1,14 +1,18 @@
 # URL Shortener
 You can create short form url for your original url and track click times of it. Try this App [**here**](https://shihtingjustin.github.io/url_shortener_vue/#/).
 
-![](https://i.imgur.com/6DVNr6e.jpg)
-![](https://i.imgur.com/ZRBf9pn.jpg)
-
+You can just use this App as a guest, or sign in with test accounts to use urls management feature.
 #### Test accounts
+
 | name |     email     | password |
 |:----:|:-------------:|:--------:|
 | LH44 | user1@amg.com |   123    |
 | NR6  | user2@amg.com |   123    |
+
+
+![](https://i.imgur.com/6DVNr6e.jpg)
+![](https://i.imgur.com/ZRBf9pn.jpg)
+
 
 
 ## Features

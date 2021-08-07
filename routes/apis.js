@@ -6,12 +6,13 @@ const userController = require('../controllers/userController')
 
 const authenticated = passport.authenticate('jwt', { session: false })
 
+router.get('/:urls', urlController.getOriginalUrl)
+router.post('/urls/guest', urlController.createShortUrlForGuest)
+router.post('/urls', authenticated, urlController.createShortUrl)
 router.post('/users', userController.createUser)
 router.post('/signin', userController.signIn)
 router.get('/users/current-user', authenticated, userController.getCurrentUser)
 router.get('/urls/all', authenticated, urlController.getAllUrlsByUser)
-router.post('/urls', authenticated, urlController.createShortUrl)
-router.get('/:urls', urlController.getOriginalUrl)
 router.delete('/urls/:id', authenticated, urlController.deleteUrl)
 
 

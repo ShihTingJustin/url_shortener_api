@@ -3,6 +3,40 @@ const helpers = require('../helpers')
 const cacheHelpers = require('../redis/cacheHelpers')
 
 const urlController = {
+  createShortUrlForGuest: async (req, res) => {
+    try {
+      const { originalUrl } = req.body
+      const isValid = await helpers.isOriginalUrlValid(originalUrl)
+      // invalid url
+      if (!isValid) return res.status(400).json({
+        status: 'error',
+        message: 'invalid url'
+      })
+
+      // valid url
+      const shortUrlLength = 5
+      const shortUrl = await helpers.isShortUrlUnique(await helpers.createShortUrl(shortUrlLength))
+      if (shortUrl) {
+        await Url.create({ originalUrl, shortUrl })
+        res.status(200).json({
+          status: 'success',
+          message: 'create shorten url successfully',
+          data: {
+            originalUrl,
+            shortUrl
+          }
+        })
+      }
+      return await helpers.getMetaData(originalUrl, shortUrl)
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        status: 'error',
+        message: 'unknown error'
+      })
+    }
+  },
+
   createShortUrl: async (req, res) => {
     try {
       const { originalUrl } = req.body
